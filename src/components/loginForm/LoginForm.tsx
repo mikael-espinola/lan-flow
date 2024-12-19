@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent } from "react";
+import React, { FormEvent, Suspense } from "react";
 import { Box, Button, FormContainer, Input, Label } from "./style";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
