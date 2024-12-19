@@ -1,11 +1,14 @@
 "use client";
 import React, { FormEvent } from "react";
-import { Box, Button, Error, FormContainer, Input, Label } from "./style";
-import { useRouter } from "next/navigation";
+import { Box, Button, FormContainer, Input, Label } from "./style";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const error = searchParams.get("error");
 
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,6 +38,7 @@ const LoginForm = () => {
           Cadastre-se
         </Button>
       </Box>
+      {error === "CredentialsSignin" && <div>E-mail ou senha não confere.</div>}
     </FormContainer>
   );
 };
