@@ -1,4 +1,3 @@
-import database from "@/database/data"
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
@@ -19,17 +18,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return null
         }
 
-        const user = database.find(user => user.email === credentials.email && user.password === credentials.password)
+        const userDefault = process.env.DEFAULT_USER
+        const passDefault = process.env.DEFAULT_PASSWORD
+        const nameDefault = process.env.DEFAULT_NAME
 
-        if(user) {
+        if(userDefault === credentials.email && passDefault === credentials.password){
+
           return {
-            id: user.id,
-          name: user.name,
-          email: user.email,
+            id:'1',
+          name: nameDefault,
           }
         }
-        return null
-      },
+      return null
+      }
     }),
   ],
 })
