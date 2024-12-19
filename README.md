@@ -10,7 +10,7 @@ Lan-Flow aims to create a modern and efficient client management system inspired
 
 ### Completed
 
-#### 1. Skeleton Creation and Authentication Setup
+#### 1. Skeleton Creation and Authentication setup
 
 - Created the basic project structure using Next.js.
 - Defined the main routes for the application:
