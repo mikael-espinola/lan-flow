@@ -42,7 +42,7 @@ const Cadastro = () => {
           />
         </Box>
         <Button type="submit">Salvar</Button>
-        <Button type="button" onClick={() => router.push("/login")}>
+        <Button type="button" onClick={() => router.push("/")}>
           Voltar
         </Button>
       </RegisterField>

@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { auth } from "../../auth";
-import LogoutButton from "@/components/logoutButton/LogoutButton";
+import { Aside, Box, ClientBox, Container, Saudacao, Title } from "./style";
+import Submenu from "@/components/submenu/Submenu";
+import ClientList from "@/components/clientList/ClientList";
 
 export default async function Home() {
   const session = await auth();
@@ -8,9 +10,17 @@ export default async function Home() {
     redirect("/login");
   }
   return (
-    <>
-      <h1>hello, {session.user?.name}</h1>
-      <LogoutButton />
-    </>
+    <Container>
+      <Aside>
+        <Title>LanFlow</Title>
+        <Submenu />
+      </Aside>
+      <Box>
+        <Saudacao>Olá, {session.user?.name}</Saudacao>
+        <ClientBox>
+          <ClientList />
+        </ClientBox>
+      </Box>
+    </Container>
   );
 }
