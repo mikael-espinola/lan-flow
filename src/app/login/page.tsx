@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Box, Container } from "./styles";
+import { Box, Container, Title } from "./styles";
 import LoginForm from "@/components/loginForm/LoginForm";
 
 const Login = () => {
@@ -7,6 +7,7 @@ const Login = () => {
     <Suspense>
       <Container>
         <Box>
+          <Title>LanFlow Management</Title>
           <LoginForm />
         </Box>
       </Container>

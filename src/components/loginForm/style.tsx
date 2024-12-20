@@ -1,5 +1,10 @@
 "use client";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const outline = css`
+  outline: 1px solid black;
+  outline-offset: 4px;
+`;
 
 export const FormContainer = styled.form`
   display: flex;
@@ -15,6 +20,11 @@ export const Input = styled.input`
   border-radius: 6px;
   border: 1px solid black;
   margin-bottom: 1rem;
+  outline: none;
+
+  &:focus-visible {
+    ${outline}
+  }
 `;
 
 export const Box = styled.div`
@@ -28,14 +38,20 @@ export const Button = styled.button`
   padding: 0.5rem;
   border: none;
   cursor: pointer;
-  width: 50%;
-  background-color: black;
+  width: 80%;
+  background-color: #ff6f00;
   border-radius: 6px;
-  color: white;
+  color: black;
+  &:focus-visible {
+    ${outline}
+  }
 `;
 
-export const Error = styled.div`
+export const Error = styled.span`
   width: 100%;
-  background-color: red;
+  background-color: #ff000096;
   color: white;
+  padding: 0.4rem;
+  text-align: center;
+  border-radius: 6px;
 `;
