@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface ProfileProps {
   $center?: string;
-  status?: number;
+  $status?: number;
 }
 
 export const Container = styled.div`
@@ -50,7 +50,7 @@ export const Span = styled.span`
 `;
 
 export const Status = styled.span<ProfileProps>`
-  color: ${(props) => (props.status === 1 ? "green" : "red")};
+  color: ${(props) => (props.$status === 1 ? "green" : "red")};
 `;
 
 export const Box = styled.div<ProfileProps>`

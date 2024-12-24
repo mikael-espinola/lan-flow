@@ -39,7 +39,7 @@ const Client = ({ data }: IClient) => {
         <Box>
           <Span>
             Status:{" "}
-            <Status status={data.status}>
+            <Status $status={data.status}>
               {data.status === 1 ? "ONLINE" : "OFFLINE"}
             </Status>
           </Span>
