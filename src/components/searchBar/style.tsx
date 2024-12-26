@@ -13,4 +13,5 @@ export const Input = styled.input`
   border-radius: 6px;
   border: 1px solid #d5d3d3;
   outline: none;
+  font-style: italic;
 `;

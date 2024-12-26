@@ -1,10 +1,18 @@
 import React from "react";
 import { Container, Input } from "./style";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  setSearch: (search: string) => void;
+}
+
+const SearchBar = ({ setSearch }: SearchBarProps) => {
   return (
     <Container>
-      <Input type="text" placeholder="Pesquisar..." />
+      <Input
+        onChange={(e) => setSearch(e.target.value)}
+        type="text"
+        placeholder="Pesquisar..."
+      />
     </Container>
   );
 };
