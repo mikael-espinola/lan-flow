@@ -9,7 +9,6 @@ const Cadastro = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Salvo");
   };
   return (
     <Container>
