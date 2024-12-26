@@ -25,3 +25,18 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   list-style: none;
 `;
+
+export const Button = styled.button`
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin: 0.2rem;
+
+  svg {
+    font-size: 16px;
+  }
+`;
