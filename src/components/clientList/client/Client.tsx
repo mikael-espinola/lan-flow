@@ -10,12 +10,13 @@ import {
   Status,
 } from "./style";
 
-type TClient = {
+export type TClient = {
+  id: string;
   nome: string;
   sobrenome?: string;
   dataNascimento: string;
-  status: number;
-  creditos: number;
+  status: string;
+  creditos: string;
 };
 
 interface IClient {
@@ -31,7 +32,7 @@ const Client = ({ data }: IClient) => {
         </Box>
         <Box $center="center">
           <Name>
-            {data.nome} {data.sobrenome}{" "}
+            {data.nome} {data.sobrenome}
           </Name>
         </Box>
       </Profile>
@@ -40,7 +41,7 @@ const Client = ({ data }: IClient) => {
           <Span>
             Status:{" "}
             <Status $status={data.status}>
-              {data.status === 1 ? "ONLINE" : "OFFLINE"}
+              {data.status === "1" ? "ONLINE" : "OFFLINE"}
             </Status>
           </Span>
         </Box>
