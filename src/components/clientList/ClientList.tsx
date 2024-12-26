@@ -12,6 +12,8 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 const ClientList = () => {
   const router = useRouter();
   const [user, setUser] = useState<TClient | null>(null);
+  const [foundUser, setFoundUser] = useState<TClient[]>([]);
+  const [search, setSearch] = useState<string>("");
 
   const handleSelectedUser = (user: TClient) => {
     router.push(`?id=${user.id}`);
@@ -20,7 +22,24 @@ const ClientList = () => {
   const ClearState = () => {
     router.push("/");
     setUser(null);
+    setFoundUser([]);
   };
+
+  useEffect(() => {
+    if (search) {
+      const filteredUsers = Users.filter(
+        (user) =>
+          user.nome.toLowerCase().includes(search.toLowerCase()) ||
+          user.sobrenome.toLowerCase().includes(search.toLowerCase()) ||
+          user.nickname.toLowerCase().includes(search.toLowerCase())
+      );
+      if (filteredUsers) {
+        setFoundUser(filteredUsers);
+      }
+    } else {
+      setFoundUser([]);
+    }
+  }, [search, Users]);
 
   return (
     <>
@@ -35,14 +54,26 @@ const ClientList = () => {
           </div>
         ) : (
           <>
-            <SearchBar />
+            <SearchBar setSearch={setSearch} />
 
             <List>
-              {Users.map((user, index) => (
-                <ListItem onClick={() => handleSelectedUser(user)} key={index}>
-                  <Client data={user} />
-                </ListItem>
-              ))}
+              {foundUser?.length > 0
+                ? foundUser.map((user) => (
+                    <ListItem
+                      key={user.id}
+                      onClick={() => handleSelectedUser(user)}
+                    >
+                      <Client data={user} />
+                    </ListItem>
+                  ))
+                : Users.map((user) => (
+                    <ListItem
+                      onClick={() => handleSelectedUser(user)}
+                      key={user.id}
+                    >
+                      <Client data={user} />
+                    </ListItem>
+                  ))}
             </List>
           </>
         )}

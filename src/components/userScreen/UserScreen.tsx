@@ -55,12 +55,6 @@ const UserScreen = ({ user }: IUserScreen) => {
     const id = params.get("id");
     setId(id);
   };
-  useEffect(() => {
-    console.log(id);
-  }, [id]);
-  useEffect(() => {
-    getId();
-  });
 
   return (
     <>
