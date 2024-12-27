@@ -1,6 +1,10 @@
+import { PrismaClient } from "@prisma/client"
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
+import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
+const prisma = new PrismaClient()
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
@@ -16,20 +20,32 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         if(!credentials){
             return null
+        } 
+
+        const {email, password} = credentials
+
+        if (typeof email !== 'string' || typeof password != 'string') {
+          throw new Error('Tipagem de Email inválido ou senha inválida');
         }
 
-        const userDefault = process.env.DEFAULT_USER
-        const passDefault = process.env.DEFAULT_PASSWORD
-        const nameDefault = process.env.DEFAULT_NAME
-
-        if(userDefault === credentials.email && passDefault === credentials.password){
-
-          return {
-            id:'1',
-          name: nameDefault,
+        const user = await prisma.user.findUnique({
+          where: {
+            email: email
           }
+        })
+
+        if(!user || !(await bcrypt.compare(password, user.hashed_password))){
+          NextResponse.json({error: 'Usuário ou senha inválidos'}, {status: 401});
+          return null
         }
-      return null
+
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        }
+
+       
       }
     }),
   ],
