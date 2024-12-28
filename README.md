@@ -4,6 +4,10 @@ Language options: [EN](#lan-flow-project) / [PT-BR](#projeto-lan-flow)
 
 Lan-Flow is a modern client management system inspired by the workflows of traditional Brazilian lan houses. It combines efficient user authentication, client registration, and session tracking to deliver a streamlined management experience.
 
+![imagem1](https://github.com/user-attachments/assets/061df671-ba1e-455a-9e14-bd866c14a587)
+---
+![imagem2](https://github.com/user-attachments/assets/4056811f-aeb1-4249-99d3-2f9fc6019972)
+---
 ## Table of Contents
 
 - [Overview](#project-overview)
@@ -58,6 +62,10 @@ O Lan-Flow é um sistema moderno de gestão de clientes inspirado no fluxo de tr
 
 O Lan-Flow utiliza tecnologias web modernas para reinventar a gestão de clientes de maneira eficiente e atual. Inspirado no funcionamento das lan houses brasileiras, o sistema oferece funcionalidades robustas, como autenticação de usuários, registro de clientes e gerenciamento de sessões.
 
+![imagem1](https://github.com/user-attachments/assets/061df671-ba1e-455a-9e14-bd866c14a587)
+---
+![imagem2](https://github.com/user-attachments/assets/4056811f-aeb1-4249-99d3-2f9fc6019972)
+---
 ## Tecnologias Utilizadas
 
 - **Next.js**: Framework para criação de aplicações web modernas e escaláveis.
