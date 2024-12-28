@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/utils/connect";
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
-
-const prisma = new PrismaClient()
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
