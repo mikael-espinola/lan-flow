@@ -29,9 +29,11 @@ Lan-Flow leverages the power of modern web technologies to reimagine client mana
 
 - Built the foundational project structure using **Next.js**.
 - Established the main application routes:
-  - `/`: Homepage (requires user authentication)
+  - `/`: Homepage \*
   - `/login`: User login page
-  - `/cadastro`: User registration page
+  - `/cadastro`: User registration page\*
+
+###### Note: Routes marked with \* require authentication.
 
 #### 2. Third-Party Integrations
 
@@ -71,16 +73,16 @@ O Lan-Flow utiliza tecnologias web modernas para reinventar a gestão de cliente
 
 - Desenvolvida a estrutura inicial do projeto utilizando **Next.js**.
 - Estabelecidas as principais rotas da aplicação:
-  - `/`: Página inicial.\*
-  - `/login`: Página de login de usuários.
-  - `/cadastro`: Página de registro de novos usuários.\*
+  - `/`: Página inicial\*
+  - `/login`: Página de login de usuários
+  - `/cadastro`: Página de registro de novos usuários\*
+
+###### Obs: rotas marcadas com \* possuem autenticação obrigatória.
 
 #### 2. Integrações Third-Party
 
 - Integrado o **NextAuth** para autenticação de usuários e gerenciamento de sessões de forma segura.
 - Configurado o **Prisma** e o **MongoDB** para operações no banco de dados, incluindo leitura, gravação e atualização de dados de usuários.
-
-###### Obs: rotas marcadas com \* possuem autenticação obrigatória.
 
 ---
 
