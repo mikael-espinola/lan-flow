@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <Container>
       <Aside>
-        <Title>LanFlow</Title>
+        <Title aria-label="Lan Flow System">LanFlow</Title>
         <Submenu />
       </Aside>
       <Box>
