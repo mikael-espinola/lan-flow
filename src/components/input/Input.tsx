@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from "react";
+import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
 import { Container, InputUnity } from "./style";
 import Label from "./label/Label";
 
@@ -7,13 +7,31 @@ type TInput = InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
   label?: string;
   id: string;
+  name?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  error?: boolean;
 };
 
-const Input = ({ type, placeholder, label, id }: TInput) => {
+const Input = ({
+  error,
+  onChange,
+  name,
+  type,
+  placeholder,
+  label,
+  id,
+}: TInput) => {
   return (
     <Container>
       {label && <Label id={id} label={label} />}
-      <InputUnity id={id} type={type} placeholder={placeholder} />
+      <InputUnity
+        $error={error}
+        onChange={onChange}
+        name={name}
+        id={id}
+        type={type}
+        placeholder={placeholder}
+      />
     </Container>
   );
 };
