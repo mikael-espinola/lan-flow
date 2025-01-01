@@ -12,11 +12,15 @@ import {
 
 export type TClient = {
   id: string;
-  nome: string;
-  sobrenome?: string;
-  dataNascimento: string;
+  name: string;
+  last_name: string;
+  birthday?: string;
   status: string;
   creditos: string;
+  email: string;
+  updatedAt?: string;
+  createdAt?: string;
+  nickname?: string;
 };
 
 interface IClient {
@@ -32,17 +36,14 @@ const Client = ({ data }: IClient) => {
         </Box>
         <Box $center="center">
           <Name>
-            {data.nome} {data.sobrenome}
+            {data.name} {data.last_name}
           </Name>
         </Box>
       </Profile>
       <Details>
         <Box>
           <Span>
-            Status:{" "}
-            <Status $status={data.status}>
-              {data.status === "1" ? "ONLINE" : "OFFLINE"}
-            </Status>
+            Status: <Status $status={data.status}>{data.status}</Status>
           </Span>
         </Box>
         <Box>

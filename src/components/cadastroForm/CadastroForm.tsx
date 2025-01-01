@@ -15,7 +15,6 @@ import Input from "@/components/input/Input";
 import { useRouter } from "next/navigation";
 
 import { FcApproval } from "react-icons/fc";
-import { FiLoader } from "react-icons/fi";
 
 type TData = {
   name: string;
@@ -47,7 +46,7 @@ const CadastroForm = () => {
 
   const sentDataUser = async (data: TData) => {
     setLoader(true);
-    const response = await fetch("/api/auth/users", {
+    const response = await fetch("/api/clients", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
