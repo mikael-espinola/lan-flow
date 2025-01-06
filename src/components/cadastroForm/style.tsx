@@ -65,8 +65,9 @@ export const ButtonBox = styled.div`
 
 export const BirthBox = styled.div`
   display: flex;
-  width: 50%;
   padding-right: 0.5rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
 `;
 
 export const ErrorBox = styled.div<errorBox>`

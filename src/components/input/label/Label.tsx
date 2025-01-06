@@ -1,4 +1,5 @@
 import React, { LabelHTMLAttributes } from "react";
+import { LabelStyle } from "./style";
 
 type TLabel = LabelHTMLAttributes<HTMLLabelElement> & {
   label: string;
@@ -6,7 +7,7 @@ type TLabel = LabelHTMLAttributes<HTMLLabelElement> & {
 };
 
 const Label = ({ label, id }: TLabel) => {
-  return <label htmlFor={id}>{label}</label>;
+  return <LabelStyle htmlFor={id}>{label}</LabelStyle>;
 };
 
 export default Label;

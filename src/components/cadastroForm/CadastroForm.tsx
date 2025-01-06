@@ -22,6 +22,7 @@ type TData = {
   last_name: string;
   permission: string;
   password: string;
+  nickname: string;
 };
 
 type TFormData = {
@@ -31,7 +32,8 @@ type TFormData = {
   validatedEmail: string;
   password: string;
   validatedPassword: string;
-  birthDate: string;
+  birthday: string;
+  nickname: string;
 };
 
 type FormErrors = {
@@ -84,8 +86,8 @@ const CadastroForm = () => {
     if (!data.name) {
       newErrors.name = true;
     }
-    if (!data.birthDate) {
-      newErrors.birthDate = true;
+    if (!data.birthday) {
+      newErrors.birthday = true;
     }
 
     if (
@@ -95,6 +97,9 @@ const CadastroForm = () => {
     ) {
       newErrors.email = true;
       newErrors.validatedEmail = true;
+    }
+    if (!data.nickname) {
+      newErrors.nickname = true;
     }
 
     setErrors(newErrors);
@@ -113,7 +118,8 @@ const CadastroForm = () => {
       validatedEmail: formData.get("validatedEmail")?.toString() || "",
       password: formData.get("pass")?.toString() || "",
       validatedPassword: formData.get("validatedPass")?.toString() || "",
-      birthDate: formData.get("birthDate")?.toString() || "",
+      birthday: formData.get("birthday")?.toString() || "",
+      nickname: formData.get("nickname")?.toString() || "",
     };
 
     let statusFormValidation = validateFields(data);
@@ -127,6 +133,7 @@ const CadastroForm = () => {
         last_name: data.lastName,
         permission: permissionDefault,
         password: data.password,
+        nickname: data.nickname,
       };
       sentDataUser(finalData);
     }
@@ -152,6 +159,22 @@ const CadastroForm = () => {
             type="text"
           />
         </FullNameBox>
+        <BirthBox>
+          <Input
+            error={errors.birthday}
+            name="birthday"
+            id="birthday"
+            type="date"
+            label="Data de Nascimento"
+          />
+          <Input
+            error={errors.birthday}
+            name="nickname"
+            id="nickname"
+            type="text"
+            label="Nickname"
+          />
+        </BirthBox>
         <ErrorBox $status={errors.name}>
           <p>Campo obrigatório</p>
         </ErrorBox>
@@ -195,16 +218,8 @@ const CadastroForm = () => {
         <ErrorBox $status={errors.password || errors.validatedPassword}>
           <p>Senhas não conferem</p>
         </ErrorBox>
-        <BirthBox>
-          <Input
-            error={errors.birthDate}
-            name="birthDate"
-            id="birthDate"
-            type="date"
-            label="Data de Nascimento"
-          />
-        </BirthBox>
-        <ErrorBox $status={errors.birthDate}>
+
+        <ErrorBox $status={errors.birthday}>
           <p>Campo obrigatório</p>
         </ErrorBox>
         <ButtonBox>
