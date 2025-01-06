@@ -27,6 +27,7 @@ const UserScreen = ({ user }: IUserScreen) => {
   const [id, setId] = useState<string | null>(null);
 
   const [editName, setEditName] = useState(false);
+  const [editNickname, setEditNickname] = useState(false);
   const [editSurname, setEditSurname] = useState(false);
   const [editStatus, setEditStatus] = useState(false);
   const [editCredits, setEditCredits] = useState(false);
@@ -34,6 +35,9 @@ const UserScreen = ({ user }: IUserScreen) => {
 
   const handleToggleEditName = () => {
     setEditName(!editName);
+  };
+  const handleToggleEditNickname = () => {
+    setEditNickname(!editNickname);
   };
   const handleToggleEditSurname = () => {
     setEditSurname(!editSurname);
@@ -62,17 +66,35 @@ const UserScreen = ({ user }: IUserScreen) => {
         <Container>
           <Options>
             <Option>
+              Nickname:
+              {editNickname ? (
+                <>
+                  <Input placeholder={user.nickname} />
+                  <Button onClick={handleToggleEditNickname}>
+                    <FaCheckDouble />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Data>{user.nickname}</Data>
+                  <Button onClick={handleToggleEditNickname}>
+                    <FaPen />
+                  </Button>
+                </>
+              )}
+            </Option>
+            <Option>
               Nome:
               {editName ? (
                 <>
-                  <Input placeholder={user.nome} />
+                  <Input placeholder={user.name} />
                   <Button onClick={handleToggleEditName}>
                     <FaCheckDouble />
                   </Button>
                 </>
               ) : (
                 <>
-                  <Data>{user.nome}</Data>
+                  <Data>{user.name}</Data>
                   <Button onClick={handleToggleEditName}>
                     <FaPen />
                   </Button>
@@ -83,14 +105,14 @@ const UserScreen = ({ user }: IUserScreen) => {
               Sobrenome:
               {editSurname ? (
                 <>
-                  <Input placeholder={user.sobrenome} />
+                  <Input placeholder={user.last_name} />
                   <Button onClick={handleToggleEditSurname}>
                     <FaCheckDouble />
                   </Button>
                 </>
               ) : (
                 <>
-                  <Data>{user.sobrenome}</Data>
+                  <Data>{user.last_name}</Data>
                   <Button onClick={handleToggleEditSurname}>
                     <FaPen />
                   </Button>
@@ -145,14 +167,14 @@ const UserScreen = ({ user }: IUserScreen) => {
               Data de Nascimento:{" "}
               {editBirthday ? (
                 <>
-                  <Input placeholder={user.dataNascimento} />
+                  <Input placeholder={user.birthday} />
                   <Button onClick={handleToggleEditBirthday}>
                     <FaCheckDouble />
                   </Button>
                 </>
               ) : (
                 <>
-                  <Data>{user.dataNascimento}</Data>
+                  <Data>{user.birthday}</Data>
                   <Button onClick={handleToggleEditBirthday}>
                     <FaPen />
                   </Button>

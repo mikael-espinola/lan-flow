@@ -80,7 +80,7 @@ export const ErrorBox = styled.div<errorBox>`
   }
 `;
 
-const rotate = keyframes`
+export const rotate = keyframes`
   0% {
     transform: rotate(0deg);
   } 

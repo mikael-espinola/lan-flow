@@ -50,7 +50,7 @@ export const Span = styled.span`
 `;
 
 export const Status = styled.span<ProfileProps>`
-  color: ${(props) => (props.$status === "1" ? "green" : "red")};
+  color: ${(props) => (props.$status === "ONLINE" ? "green" : "red")};
 `;
 
 export const Box = styled.div<ProfileProps>`

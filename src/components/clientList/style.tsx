@@ -1,5 +1,6 @@
 "use client";
 import styled from "styled-components";
+import { rotate } from "../cadastroForm/style";
 
 export const Box = styled.div`
   width: 100%;
@@ -16,6 +17,7 @@ export const List = styled.ul`
   justify-items: center;
   min-height: 8rem;
   border-radius: 6px;
+  position: relative;
 
   @media (max-width: 1268px) {
     grid-template-columns: repeat(3, 1fr);
@@ -38,5 +40,17 @@ export const Button = styled.button`
 
   svg {
     font-size: 16px;
+  }
+`;
+
+export const LoaderBox = styled.div`
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  svg {
+    font-size: 40px;
+    animation: ${rotate} 4s linear infinite;
   }
 `;
