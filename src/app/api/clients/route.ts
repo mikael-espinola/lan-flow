@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
     export async function POST(request: NextRequest) {
         try {
         const body = await request.json();
-        const {email, name, last_name, password, birthday} = body;
+        const {email, name, last_name, password, birthday, nickname} = body;
 
         if (!email || !name || !password) {
             return NextResponse.json({ error: 'Dados inválidos' }, { status: 400 });
@@ -27,7 +27,8 @@ import bcrypt from "bcrypt";
             hashed_password: crypto_password,
             creditos,
             status,
-            birthday
+            birthday,
+            nickname
             }
         });
 

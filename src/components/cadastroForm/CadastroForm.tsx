@@ -134,6 +134,7 @@ const CadastroForm = () => {
         permission: permissionDefault,
         password: data.password,
         nickname: data.nickname,
+        birthday: data.birthday,
       };
       sentDataUser(finalData);
     }

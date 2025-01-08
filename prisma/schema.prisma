@@ -29,8 +29,8 @@ model Client {
   status          String
   createdAt       DateTime? @default(now())
   updatedAt       DateTime?
-  birthday        String?
-  nickname        String?
+  birthday        DateTime
+  nickname        String
 
   @@map("clients")
 }
