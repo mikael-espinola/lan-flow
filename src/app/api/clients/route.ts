@@ -73,3 +73,33 @@ import bcrypt from "bcrypt";
             await prisma.$disconnect()
         }
     }
+
+    export async function PUT(request: NextRequest){
+        const body = await request.json()
+        const {email, name, last_name, password, creditos, userId} = body;
+
+        const updateData: any = {};
+
+        if (email) updateData.email = email;
+        if (name) updateData.name = name;
+        if (last_name) updateData.last_name = last_name;
+        if (creditos) updateData.creditos = creditos;
+        if (password) updateData.hashed_password = password;        
+        try {
+             
+            const updatedClient = await prisma.client.update({
+                where: {
+                    id: userId
+                },
+                data: updateData
+            })
+
+        return NextResponse.json({ message: 'Requisição recebida com sucesso!', userId });
+
+
+        } catch (error) {
+            return NextResponse.json({ error: 'Erro ao atualizar o usuário' }, { status: 500 });
+        } finally {
+            await prisma.$disconnect()
+        }
+    }
