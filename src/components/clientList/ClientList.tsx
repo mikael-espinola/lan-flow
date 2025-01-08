@@ -98,7 +98,6 @@ const ClientList = () => {
                   </ListItem>
                 ))
               ) : (
-                // <h1>hello</h1>
                 userList &&
                 userList.map((user) => (
                   <ListItem
