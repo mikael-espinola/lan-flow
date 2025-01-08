@@ -1,187 +1,93 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TClient } from "../clientList/client/Client";
 import {
+  ActionsBox,
+  BoxName,
   Button,
+  ClientName,
   Container,
-  Data,
-  Input,
-  Option,
-  Options,
-  Select,
-  SelectOption,
+  Item,
+  ItemList,
+  ItemLabel,
+  Label,
+  ItemData,
 } from "./style";
 
-import { FaPen } from "react-icons/fa";
-import { TiPlusOutline } from "react-icons/ti";
-
-import { FaCheckDouble } from "react-icons/fa";
-import { useSearchParams } from "next/navigation";
-
 interface IUserScreen {
-  user: TClient | null;
+  user: TClient;
 }
 
 const UserScreen = ({ user }: IUserScreen) => {
-  const params = useSearchParams();
-  const [id, setId] = useState<string | null>(null);
-
-  const [editName, setEditName] = useState(false);
-  const [editNickname, setEditNickname] = useState(false);
-  const [editSurname, setEditSurname] = useState(false);
-  const [editStatus, setEditStatus] = useState(false);
-  const [editCredits, setEditCredits] = useState(false);
-  const [editBirthday, setEditBirthday] = useState(false);
-
-  const handleToggleEditName = () => {
-    setEditName(!editName);
-  };
-  const handleToggleEditNickname = () => {
-    setEditNickname(!editNickname);
-  };
-  const handleToggleEditSurname = () => {
-    setEditSurname(!editSurname);
-  };
-  const handleToggleEditStatus = () => {
-    setEditStatus(!editStatus);
-  };
-
-  const handleStatusChange = (newStatus: string) => {};
-
-  const handleToggleEditCredits = () => {
-    setEditCredits(!editCredits);
-  };
-  const handleToggleEditBirthday = () => {
-    setEditBirthday(!editBirthday);
-  };
-
-  const getId = () => {
-    const id = params.get("id");
-    setId(id);
-  };
+  const [id, setId] = useState<string>(user?.id);
 
   return (
     <>
       {user && (
         <Container>
-          <Options>
-            <Option>
-              Nickname:
-              {editNickname ? (
-                <>
-                  <Input placeholder={user.nickname} />
-                  <Button onClick={handleToggleEditNickname}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.nickname}</Data>
-                  <Button onClick={handleToggleEditNickname}>
-                    <FaPen />
-                  </Button>
-                </>
-              )}
-            </Option>
-            <Option>
-              Nome:
-              {editName ? (
-                <>
-                  <Input placeholder={user.name} />
-                  <Button onClick={handleToggleEditName}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.name}</Data>
-                  <Button onClick={handleToggleEditName}>
-                    <FaPen />
-                  </Button>
-                </>
-              )}
-            </Option>
-            <Option>
-              Sobrenome:
-              {editSurname ? (
-                <>
-                  <Input placeholder={user.last_name} />
-                  <Button onClick={handleToggleEditSurname}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.last_name}</Data>
-                  <Button onClick={handleToggleEditSurname}>
-                    <FaPen />
-                  </Button>
-                </>
-              )}
-            </Option>
-            <Option>
-              Status:{" "}
-              {editStatus ? (
-                <>
-                  <Select
-                    defaultValue={`${
-                      user.status === "1" ? "ONLINE" : "OFFLINE"
-                    }`}
-                    onChange={(event) => handleStatusChange(event.target.value)}
-                  >
-                    <SelectOption value={1}>ONLINE</SelectOption>
-                    <SelectOption value={0}>OFFLINE</SelectOption>
-                  </Select>
-                  <Button onClick={handleToggleEditStatus}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.status === "1" ? "ONLINE" : "OFFLINE"}</Data>
-                  <Button onClick={handleToggleEditStatus}>
-                    <FaPen />
-                  </Button>
-                </>
-              )}
-            </Option>
-            <Option>
-              Créditos:{" "}
-              {editCredits ? (
-                <>
-                  <Input placeholder={`${user.creditos}`} />
-                  <Button onClick={handleToggleEditCredits}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.creditos}</Data>
-                  <Button onClick={handleToggleEditCredits}>
-                    <TiPlusOutline />
-                  </Button>
-                </>
-              )}
-            </Option>
-            <Option>
-              Data de Nascimento:{" "}
-              {editBirthday ? (
-                <>
-                  <Input placeholder={user.birthday} />
-                  <Button onClick={handleToggleEditBirthday}>
-                    <FaCheckDouble />
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Data>{user.birthday}</Data>
-                  <Button onClick={handleToggleEditBirthday}>
-                    <FaPen />
-                  </Button>
-                </>
-              )}
-            </Option>
-          </Options>
+          <BoxName>
+            <ClientName>
+              <Label>
+                Cliente: {user.name} {user.last_name}
+              </Label>
+              <Label>/</Label>
+              <Label>
+                Nickname: {user.nickname ? user.nickname : "Não cadastrado"}
+              </Label>
+            </ClientName>
+            <ActionsBox>
+              <Button
+                disabled={user.status === "OFFLINE" ? true : false}
+                $type="drop"
+              >
+                Encerrar Sessão
+              </Button>
+              <Button>Recarregar</Button>
+              <Button $type={"edit"}>Editar</Button>
+              <Button $type={"delete"}>Excluir</Button>
+            </ActionsBox>
+          </BoxName>
+
+          <ItemList>
+            <Item>
+              <ItemLabel>
+                Créditos: R$
+                <ItemData $type={user.creditos === "0" && true}>
+                  {user.creditos}
+                </ItemData>
+              </ItemLabel>
+            </Item>
+            <Item>
+              <ItemLabel>
+                Status:
+                <ItemData $type={user.status === "OFFLINE" && true}>
+                  {user.status}
+                </ItemData>
+              </ItemLabel>
+            </Item>
+            <Item>
+              <ItemLabel>
+                E-mail:<ItemData>{user.email}</ItemData>
+              </ItemLabel>
+            </Item>
+
+            <Item>
+              <ItemLabel>
+                Birthday:<ItemData>{user.birthday}</ItemData>
+              </ItemLabel>
+            </Item>
+
+            <Item>
+              <ItemLabel>
+                Data de registro:<ItemData>{user.createdAt}</ItemData>
+              </ItemLabel>
+            </Item>
+            <Item>
+              <ItemLabel>
+                Última atualização:<ItemData>{user.updatedAt}</ItemData>{" "}
+              </ItemLabel>
+            </Item>
+          </ItemList>
         </Container>
       )}
     </>
